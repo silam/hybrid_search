@@ -1,0 +1,10 @@
+bm25s
+datasets #datasets from huggingface
+cohere
+openai
+numpy
+panda
+pyarrow
+python-dotenv
+tiktoken
+tqdm #adds progress bars to loops and iterables
