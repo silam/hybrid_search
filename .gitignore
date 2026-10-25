@@ -1,2 +1,5 @@
 fiqa/
 fiqa/*.parquet 
+data/
+
+indexes/
