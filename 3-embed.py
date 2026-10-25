@@ -22,7 +22,7 @@ load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 model = "text-embedding-3-small"
 
-DATA_DIR = Path(__file__).parent / "data" / "fiqa"
+DATA_DIR = Path(__file__).parent / "data" / "fiqa" / "fiqa"
 INDEX_DIR = Path(__file__).parent / "indexes" / "dense"
 INDEX_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -81,7 +81,16 @@ def search_dense(query: str, k: int = 10) -> list[tuple[str, float]]:
     """Return the top-k (doc_id, similarity) pairs for a query."""
     query_vec = embed_batch([query])[0]
     query_vec /= np.linalg.norm(query_vec)
+
+    # Compute cosine similarity scores between the query and all document embeddings.
+    # The dot product of normalized vectors gives the cosine similarity.
+    # Higher scores indicate greater similarity.
+    # @ means matrix multiplication, which in this case computes the dot product of the query vector with each document embedding.
     scores = doc_embeddings_normed @ query_vec
+
+    # Get the indices of the top-k highest scoring documents.
+    # argsort returns the indices that would sort the array. We negate the scores to get descending order.  
+    
     top_k = np.argsort(-scores)[:k]
     return [(doc_ids[i], float(scores[i])) for i in top_k]
 

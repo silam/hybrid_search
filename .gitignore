@@ -1,3 +1,4 @@
+.env
 fiqa/
 fiqa/*.parquet 
 data/
