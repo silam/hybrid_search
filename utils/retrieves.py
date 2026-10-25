@@ -11,8 +11,8 @@ load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 ROOT = Path(__file__).parent.parent
-DATA_DIR = ROOT / "data" / "fiqa"
-BM25_DIR = ROOT / "indexes" / "bm25"
+DATA_DIR = ROOT / "data" / "fiqa" / "fiqa"
+BM25_DIR = ROOT / "data" / "fiqa" /  "fiqa" / "indexes" / "bm25"
 DENSE_DIR = ROOT / "indexes" / "dense"
 EMBEDDING_MODEL = "text-embedding-3-small"
 
