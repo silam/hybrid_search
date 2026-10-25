@@ -1,5 +1,5 @@
 from collections import defaultdict
-from utils.retrieves import BM25Retriever, DenseRetriever, load_corpus
+from utils.retrievers import BM25Retriever, DenseRetriever, load_corpus
 
 K_RRF = 60
 
@@ -33,8 +33,8 @@ def show(label: str, results: list[tuple[str, float]]) -> None:
 
 
 if __name__ == "__main__":
-    query = "example query"
+    query = "Where should I park my rainy-day fund?"
     results = search_hybrid(query)
-    show("BM25 only", bm25.search(query, k=5))
-    show("Dense only", dense.search(query, k=5))    
-    show("Hybrid Search RRF Results", search_hybrid(query, k=5))
+    show("BM25 only", bm25.search(query, k=10))
+    show("Dense only", dense.search(query, k=10))    
+    show("Hybrid Search RRF Results", search_hybrid(query, k=10))
