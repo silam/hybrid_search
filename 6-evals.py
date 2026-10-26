@@ -68,7 +68,7 @@ def hybrid_topk(query: str, candidate_k: int = 10) -> list[str]:
 def reranked_topk(query: str, candidate_k: int = 10) -> list[str]:
     candidates = hybrid_topk(query, candidate_k=candidate_k)
     return [
-        d for d, _ in rerank_with_cohere(query, candidates, corpus_by_id, k=candidate_k)
+        d for d, _ in rerank_with_openrouter(query, candidates, corpus_by_id, k=candidate_k)
     ] 
 
 
