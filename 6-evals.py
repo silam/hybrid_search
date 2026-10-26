@@ -61,14 +61,14 @@ corpus_by_id = load_corpus().set_index("_id")
 
 def hybrid_topk(query: str, candidate_k: int = 10) -> list[str]:
     return [
-        d for d, _ in hybrid_candidates(query, bm25, dense, candidates=candidate_k)
+        d for d, _ in hybrid_candidates(query, bm25, dense, candidate_k=candidate_k)
     ]
 
 
-def rerank_topk(query: str, candidate_k: int = 10) -> list[str]:
+def reranked_topk(query: str, candidate_k: int = 10) -> list[str]:
     candidates = hybrid_topk(query, candidate_k=candidate_k)
     return [
-        d for d, _ in rerank_with_cohere(query, candidates, corpus_by_id, candidate_k=candidate_k)
+        d for d, _ in rerank_with_cohere(query, candidates, corpus_by_id, k=candidate_k)
     ] 
 
 
